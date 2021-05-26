@@ -1,11 +1,6 @@
 <template>
 	<div>
-		<h2>Rectangle Creator</h2>
-		<p>
-			API KEY:
-			<input v-model="api_key" value="API_KEY123" />
-			API KEY {{api_key}}
-		</p>		
+		<h2>Rectangle Creator</h2>	
 		<p>
 			Shareable URL:
 			<input v-model="url" value="123.google.sheet" />
@@ -22,7 +17,6 @@ export default {
 	name: "App",
 	data() {
 		return {
-			api_key: "",
 			url: "",
 			count: 2,
 		};
@@ -32,9 +26,7 @@ export default {
 			console.log("CREATING!!!!");
 			console.log(process.env.NODE_ENV);
 			const doc = new GoogleSpreadsheet(this.url);
-			console.log(process.env.API_KEY);
-			console.log(process.env);
-			await doc.useApiKey(this.api_key);
+			await doc.useApiKey(API_KEY);
 			
 			await doc.loadInfo();
 

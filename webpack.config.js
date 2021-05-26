@@ -3,7 +3,7 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin')
 var webpack = require('webpack');
-var dotenv = require('dotenv');
+const secrets = require('./secrets.json')
 
 module.exports = (env, argv) => ({
     // This is necessary because Figma's 'eval' works differently than normal eval
@@ -47,6 +47,9 @@ module.exports = (env, argv) => ({
     },
 
     plugins: [
+		new webpack.DefinePlugin({
+			'API_KEY': JSON.stringify(secrets.API_KEY)
+		}),        
         new HtmlWebpackPlugin({
             template: './src/ui.html',
             filename: 'ui.html',
